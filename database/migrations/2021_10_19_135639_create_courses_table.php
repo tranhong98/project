@@ -17,7 +17,6 @@ class CreateCoursesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->unsignedInteger('course_type_id');
-            // $table->foreign('course_type_id')->references('id')->on('course_types');
             $table->unsignedInteger('price');
             $table->timestamps();
         });

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CourseDetailStoreRequest;
+use App\Http\Requests\CourseStoreRequest;
+use App\Http\Requests\CourseUpdateRequest;
 use App\Models\Course;
 use App\Models\CourseDetail;
 use App\Models\CourseType;
@@ -23,13 +26,9 @@ class CourseController extends Controller
         return view('course.create', compact('courseTypes'));
     }
 
-    public function store(Request $request)
+    public function store(CourseStoreRequest $request)
     {
-        Course::create([
-            'name' => $request->name,
-            'course_type_id' => $request->courseType,
-            'price' => $request->price,
-        ]);
+        Course::create($request->only('name', 'course_type_id', 'price'));
 
         return redirect()->route('courses.index');
     }
@@ -42,7 +41,7 @@ class CourseController extends Controller
         return view('course.edit', compact('course', 'courseTypes'));
     }
 
-    public function update(Request $request, $id)
+    public function update(CourseUpdateRequest $request, $id)
     {
         Course::where('id', $id)->update([
             'name' => $request->name,
@@ -75,7 +74,7 @@ class CourseController extends Controller
         return view('course.courseDetail.create', compact('course'));
     }
 
-    public function courseDetailStore($courseId, Request $request)
+    public function courseDetailStore($courseId, CourseDetailStoreRequest $request)
     {
         CourseDetail::create([
             'course_id' => $courseId,
@@ -84,7 +83,6 @@ class CourseController extends Controller
             'description' => $request->description,
             'video' => $request->video,
         ]);
-
         return redirect()->route('courses.courseDetails.index', $courseId);
     }
 

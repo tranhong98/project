@@ -8,7 +8,7 @@ use App\Models\User;
 class UserSeeder extends Seeder
 {
 
-    const STORAGE_PATH = 'app\public';
+    const STORAGE_PATH = 'app/public/';
 
     /**
      * Run the database seeds.

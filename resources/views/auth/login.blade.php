@@ -21,25 +21,37 @@
                             <div class="brand-logo">
                                 <img src="../../assets/images/logo.svg">
                             </div>
-                            <h6 class="font-weight-light">Sign in to continue.</h6>
+
                             <form class="pt-3" action="{{ url('/login') }}" method="POST">
                                 @csrf
 
                                 <div class="form-group">
-                                    <input type="email" name="email" class="form-control form-control-lg" placeholder="Email">
+                                    <input type="email" name="email" class="form-control form-control-lg"
+                                        placeholder="Email" value="{{ old('email') }}" autocomplete="off">
                                 </div>
+                                @if ($errors->first('email'))
+                                    <p class="text-danger"> {{ $errors->first('email') }}</p>
+                                @endif
                                 <div class="form-group">
-                                    <input type="password" name="password" class="form-control form-control-lg" placeholder="Password">
+                                    <input type="password" name="password" class="form-control form-control-lg"
+                                        placeholder="Mật khẩu" autocomplete="off">
                                 </div>
+                                @if ($errors->first('password'))
+                                    <p class="text-danger"> {{ $errors->first('password') }}</p>
+                                @endif
                                 <div class="mt-3">
-                                    <button type="submit" class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn">SIGN IN</button>
+                                    <button type="submit"
+                                        class="btn btn-block btn-gradient-primary btn-lg font-weight-medium auth-form-btn text-capitalize">
+                                        Đăng nhập
+                                    </button>
                                 </div>
                                 <div class="my-2 d-flex justify-content-between align-items-center">
                                     <label>
-                                        <input type="checkbox"> Keep me signed in </label>
-                                    <a href="#" class="auth-link text-black">Forgot password?</a>
+                                        <input type="checkbox">Ghi nhớ </label>
+                                    <a href="#" class="auth-link text-black">Quên mật khẩu?</a>
                                 </div>
-                                <div class="text-center mt-4 font-weight-light"> Don't have an account? <a href="register.html" class="text-primary">Create</a>
+                                <div class="text-center mt-4 font-weight-light"> Don't have an account? <a
+                                        href="register.html" class="text-primary">Create</a>
                                 </div>
                             </form>
                         </div>

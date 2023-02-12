@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'user' => 10,
+    'user' => 2,
     'course' => 10,
     'course_detail' => 10,
     'user_course' => 3,
