@@ -26,7 +26,7 @@
                                 @csrf
 
                                 <div class="form-group">
-                                    <input type="email" name="email" class="form-control form-control-lg"
+                                    <input type="text" name="email" class="form-control form-control-lg"
                                         placeholder="Email" value="{{ old('email') }}" autocomplete="off">
                                 </div>
                                 @if ($errors->first('email'))
